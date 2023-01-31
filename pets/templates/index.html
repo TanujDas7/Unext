@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %} Home {% endblock title %}
+{% block content %}
+    <a href="{{url_for('register')}}"><p>register your pet</p></a>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>breed</th>
+            <th>owner</th>
+        </tr>
+        {% for item in data %}
+        <tr>
+            {% for entry in item %}
+            {% if entry == "" %}
+            <td>empty</td>
+            {%else%}
+            <td>{{entry}}</td>
+            {% endif %}
+            {% endfor %}
+            <td><a href="{{url_for('update', id=item[0])}}"><button>update</button></a></td>
+            <td><a href="{{url_for('delete', id=item[0])}}"><button>delete</button></a></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
